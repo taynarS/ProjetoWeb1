@@ -1,0 +1,7 @@
+Layout escolhido: https://dribbble.com/shots/14908836-Blacktop-Icons
+
+Trabalho desempenhado pela equipe:
+Victoria Gabriella: HTML e CSS
+Mara Taynar: JS
+
+Observação: durante a execução do trabalho tivemos dificuldade em colocar o background conforme o layout, granulado e gradiente.

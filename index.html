@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="imgs/icone-2.png">
+    <style>
+        h1 {
+            text-align: center;
+        }
+        
+        table,
+        form {
+            width: 500px;
+            margin: 0px auto;
+            text-align: left;
+        }
+        
+        table {
+            text-align: right;
+            max-height: unset;
+        }
+        
+        table td,
+        table th {
+            border: none;
+        }
+        
+        table th {
+            max-width: 90px;
+        }
+        
+        label,
+        input {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        
+        body {
+            background: #FF7F50;
+            font-family: 'Californian FB';
+            background-repeat: no-repeat;
+        }
+        
+        #container {
+            padding: 80px 50px;
+            text-align: center;
+            margin: 0 auto;
+            background-color: #f0ff64;
+            margin: 50px auto;
+            width: 500px;
+            height: 98%;
+            overflow: hidden
+        }
+        
+        #form input {
+            float: right;
+        }
+        
+        .btn {
+            border-radius: 21px;
+            font-family: 'Californian FB';
+            margin: 17px 17px;
+            padding: 5px 10px;
+            font-weight: bolder;
+            border: solid 1px #FF7F50;
+            background-color: #FFFAF0;
+        }
+        
+        button:hover {
+            color: #FF7F50;
+        }
+        
+        form button {
+            float: right;
+        }
+        
+        #mensagens {
+            clear: both;
+        }
+        
+        #icone2 {
+            float: right;
+            margin: 0px auto;
+        }
+        
+        #icone1 {
+            float: left;
+            margin: 0px auto;
+            max-width: 90px;
+        }
+        
+        .popup {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 300px;
+            height: 200px;
+            padding: 15px;
+            border: solid 1px black;
+            background: #F0F8FF;
+            display: none;
+        }
+        
+        a {
+            text-decoration: none;
+            font-family: 'Californian FB';
+        }
+    </style>
+</head>
+
+<body id="pagina">
+
+
+    <div id="container">
+        <img id="icone2" src="imgs/icone-2.png" alt="Logo" />
+        <div>
+            <button class="btn" type="button" onclick="mudar_cor_de_fundo('#1E90FF') ">Azul</button>
+            <button class="btn" type="button" onclick="mudar_cor_de_fundo('#9400D3') ">Roxo</button>
+            <button class="btn" type="button" onclick="mudar_cor_de_fundo('#FF1493') ">Rosa</button>
+        </div>
+        <h1>Deixe seu recado!</h1>
+
+        <form>
+            <div>
+                <div>
+                    <label for="nome">Nome</label>
+                </div>
+                <div>
+                    <input class="btn" type="text" name="nome" id="nome" />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="men">Mensagem</label>
+                </div>
+                <div>
+                    <input class="btn " type="text" name="men" id="men" />
+                </div>
+
+            </div>
+            <button class="btn">Enviar</button>
+        </form>
+
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Mensagem</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <img id="icone1" src="imgs/icone-1.png" alt="Logo" />
+    </div>
+    <footer>
+
+        <div id="modal-footer" class="modal-container">
+            <div>
+                <div id="popup" class="popup">
+                    <p><strong>Disciplina</strong></p>
+                    <p>Desenvolvimento de software para WEB </p>
+                    <p><strong>Equipe:</strong></p>
+                    <p>Mara Taynar de Lima Santiago</p>
+                    <p> Gabriella Rebouças Pereira </p>
+                </div>
+
+                <a class="btn" href="javascript: abrir()">Créditos</a>
+
+                <a class="btn" href="javascript: fechar()">Fechar</a>
+
+            </div>
+        </div>
+    </footer>
+    <script>
+        const formEl = document.querySelector("form");
+        const tbodyEl = document.querySelector("tbody");
+        const tableEl = document.querySelector("table");
+
+
+        function onAddmen(e) {
+            e.preventDefault();
+            const men = document.getElementById("men").value;
+            const nome = document.getElementById("nome").value;
+            tbodyEl.innerHTML += `
+            <tr>
+                <td>${nome}</td>
+                <td>${men}</td>
+                <td><button class="deleteBtn btn">Deletar</button></td>
+            </tr>
+        `;
+        }
+
+        function onDeleteRow(e) {
+            if (!e.target.classList.contains("deleteBtn")) {
+                return;
+            }
+
+            const btn = e.target;
+            btn.closest("tr").remove();
+        }
+
+        formEl.addEventListener("submit", onAddmen);
+        tableEl.addEventListener("click", onDeleteRow);
+
+        function mudar_cor_de_fundo(color) {
+            var cor = color;
+            document.getElementById("pagina").style.backgroundColor = cor;
+
+        }
+
+        function abrir() {
+            document.getElementById("popup").style.display = 'block';
+        }
+
+        function fechar() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
